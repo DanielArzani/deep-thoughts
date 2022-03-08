@@ -1,5 +1,7 @@
 const { Thought, User } = require("../models/");
 const { AuthenticationError } = require("apollo-server-express");
+// When ever a user creates an account or logs in then a token is going to be signed by the server and sent back to them to keep
+// When they want to log in they will have to send it to us and we will verify it, if it passes, we send it back and grant them access
 const { signToken } = require("../utils/auth.js");
 
 const resolvers = {
@@ -27,6 +29,20 @@ const resolvers = {
         .select("-__v -password")
         .populate("friends")
         .populate("thoughts");
+    },
+
+    // context comes from server.js context: authMiddleware
+    me: async (parent, args, context) => {
+      if (context.user) {
+        const userData = await User.findOne({ _id: context.user._id })
+          .select("-__v -password")
+          .populate("thoughts")
+          .populate("friends");
+
+        return userData;
+      }
+
+      throw new AuthenticationError("Not logged in");
     },
   },
   Mutation: {
