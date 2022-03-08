@@ -39,7 +39,13 @@ const typeDefs = gql`
     thoughts(username: String): [Thought]
     thought(_id: ID!): Thought
   }
+
+  type Mutation {
+    login(email: String!, password: String!): User
+    addUser(username: String!, email: String!, password: String!): User
+  }
 `;
+// A GraphQL query retrieves data, which only accounts for one CRUD operation. But what about creating, updating, and deleting? For those operations, you can use a mutation.
 
 // export the typeDefs
 module.exports = typeDefs;
