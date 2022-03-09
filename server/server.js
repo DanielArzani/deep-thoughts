@@ -67,6 +67,24 @@ startServer();
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
+/**-----------------------------------------------------------------------------------------
+ *                          FOR CODE UNDERNEATH THIS BLOCK
+ * We just added two important pieces of code that will only come into effect when we go into production. First, we check to see if the Node environment is in production. If it is, we instruct the Express.js server to serve any files in the React application's build directory in the client folder. We don't have a build folder yet—because remember, that's for production only!
+
+The next set of functionality we created was a wildcard GET route for the server. In other words, if we make a GET request to any location on the server that doesn't have an explicit route defined, respond with the production-ready React front-end code.
+
+ *-----------------------------------------------------------------------------------------**/
+
+// Serve up static assets
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, "../client/build")));
+}
+
+// send index.html for any routes that don't exist
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../client/build/index.html"));
+});
+
 db.once("open", () => {
   app.listen(PORT, () => {
     console.log(`API server running on port ${PORT}!`);
