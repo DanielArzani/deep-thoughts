@@ -1,14 +1,9 @@
 const { Thought, User } = require("../models/");
 const { AuthenticationError } = require("apollo-server-express");
-// When ever a user creates an account or logs in then a token is going to be signed by the server and sent back to them to keep
-// When they want to log in they will have to send it to us and we will verify it, if it passes, we send it back and grant them access
 const { signToken } = require("../utils/auth.js");
 
 const resolvers = {
   Query: {
-    // parent is a placeholder since username is the second param
-    // parent: This is if we used nested resolvers to handle more complicated actions, as it would hold the reference to the resolver that executed the nested resolver function. We won't need this throughout the project, but we need to include it as the first argument.
-
     /**-------------------------
      *    GET ALL THOUGHTS
      *------------------------**/

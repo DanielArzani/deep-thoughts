@@ -10,19 +10,11 @@ import ThoughtForm from "../components/ThoughtForm";
 import ThoughtList from "../components/ThoughtList";
 
 const Home = () => {
-  // use useQuery hook to make query request
-  // can also take in error alongside loading and data
-  // data -> an array of objects
   const { loading, data } = useQuery(QUERY_THOUGHTS);
 
-  // use object destructuring to extract `data` from the `useQuery` Hook's response and rename it `userData` to be more descriptive
   const { data: userData } = useQuery(QUERY_ME_BASIC);
 
-  // the ? checks to make sure that data exists,it will return undefined if it doesn't
-  // making it equal to an empty array will prevent an error from being thrown, react will update it from an empty array into one with the data once its done loading
-  // we could probably use loading to deal with this
   const thoughts = data?.thoughts || [];
-  // console.log(thoughts);
 
   const loggedIn = Auth.loggedIn();
   return (
