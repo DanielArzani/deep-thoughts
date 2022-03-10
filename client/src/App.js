@@ -5,11 +5,17 @@ import {
   InMemoryCache,
   createHttpLink,
 } from "@apollo/client";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 
 import Home from "./pages/Home";
+import Login from "./pages/Login";
+import NoMatch from "./pages/NoMatch";
+import SingleThought from "./pages/SingleThought";
+import Profile from "./pages/Profile";
+import Signup from "./pages/Signup";
 
 // establish the connection to the back-end server's /graphql endpoint
 // in production, we would have to change the uri each time
@@ -35,13 +41,27 @@ const client = new ApolloClient({
 function App() {
   return (
     <ApolloProvider client={client}>
-      <div className="flex-column justify-flex-start min-100-vh">
-        <Header />
-        <div className="container">
-          <Home />
+      {/* Router makes all of the child components on the page aware of the client-side routing that can take place now. */}
+      <Router>
+        <div className="flex-column justify-flex-start min-100-vh">
+          <Header />
+          <div className="container">
+            {/* Using Switch if the route doesn't match any of the preceding paths (e.g., /about), then users will see the 404 message. */}
+            <Switch>
+              <Route exact path="/" component={Home} />
+              <Route exact path="/login" component={Login} />
+              <Route exact path="/signup" component={Signup} />
+              <Route exact path="/profile" component={Profile} />
+              <Route exact path="/thought" component={SingleThought} />
+              <Route exact path="/profile/:username?" component={Profile} />
+              <Route exact path="/thought/:id" component={SingleThought} />
+
+              <Route component={NoMatch} />
+            </Switch>
+          </div>
+          <Footer />
         </div>
-        <Footer />
-      </div>
+      </Router>
     </ApolloProvider>
   );
 }

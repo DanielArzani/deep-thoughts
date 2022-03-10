@@ -75,15 +75,16 @@ The next set of functionality we created was a wildcard GET route for the server
 
  *-----------------------------------------------------------------------------------------**/
 
+//! Gives me errors and prevents me from opening graphiQL
 // Serve up static assets
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, "../client/build")));
-}
+// if (process.env.NODE_ENV === "production") {
+//   app.use(express.static(path.join(__dirname, "../client/build")));
+// }
 
 // send index.html for any routes that don't exist
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "../client/build/index.html"));
-});
+// app.get("*", (req, res) => {
+//   res.sendFile(path.join(__dirname, "../client/build/index.html"));
+// });
 
 db.once("open", () => {
   app.listen(PORT, () => {
