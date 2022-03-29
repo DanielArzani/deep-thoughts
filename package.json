@@ -1,6 +1,6 @@
 {
   "name": "deep-thoughts",
-  "homepage": "http://danielarzani.github.io/deep-thoughts",
+  "homepage": "http://DanielArzani.github.io/deep-thoughts",
   "version": "1.0.0",
   "description": "",
   "main": "server/server.js",
