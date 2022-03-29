@@ -4,7 +4,7 @@
 
 A social media application built using the MERN stack. The app, named Deep Thoughts, will allow users to sign up and create an account, post their thoughts, and interact with other users. It uses GraphQL, implemented by Apollo, in addition to Express server, and authentication using JWT's (JsonWebToken).
 
-## Live URL
+## Screen Shot
 
 ![deep-thoughts-screenshot](./screenshots/deep-thoughts_screenshot.png)
 
