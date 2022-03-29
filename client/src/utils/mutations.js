@@ -1,5 +1,7 @@
 import { gql } from "@apollo/client";
 
+// The queries as we would write in graphiQl, we are turning them into expressions to be used
+
 export const LOGIN_USER = gql`
   mutation login($email: String!, $password: String!) {
     login(email: $email, password: $password) {
@@ -17,20 +19,6 @@ export const ADD_USER = gql`
     addUser(username: $username, email: $email, password: $password) {
       token
       user {
-        _id
-        username
-      }
-    }
-  }
-`;
-
-export const ADD_FRIEND = gql`
-  mutation addFriend($id: ID!) {
-    addFriend(friendId: $id) {
-      _id
-      username
-      friendCount
-      friends {
         _id
         username
       }
@@ -62,6 +50,33 @@ export const ADD_REACTION = gql`
         _id
         reactionBody
         createdAt
+        username
+      }
+    }
+  }
+`;
+
+export const ADD_FRIEND = gql`
+  mutation addFriend($id: ID!) {
+    addFriend(friendId: $id) {
+      _id
+      username
+      friendCount
+      friends {
+        _id
+        username
+      }
+    }
+  }
+`;
+
+export const REMOVE_FRIEND = gql`
+  mutation removeFriend($id: ID!) {
+    removeFriend(id: $id) {
+      _id
+      username
+      friends {
+        _id
         username
       }
     }

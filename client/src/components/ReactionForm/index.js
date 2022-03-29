@@ -4,8 +4,10 @@ import { useMutation } from "@apollo/client";
 import { ADD_REACTION } from "../../utils/mutations";
 
 const ReactionForm = ({ thoughtId }) => {
+  // State for reaction form and form character count
   const [reactionBody, setBody] = useState("");
   const [characterCount, setCharacterCount] = useState(0);
+  // addReaction mutationFunction
   const [addReaction, { error }] = useMutation(ADD_REACTION);
 
   // update state based on form input changes
@@ -21,6 +23,7 @@ const ReactionForm = ({ thoughtId }) => {
     event.preventDefault();
 
     try {
+      // call mutationFunction and pass in required args acquired from form
       await addReaction({
         variables: { reactionBody, thoughtId },
       });

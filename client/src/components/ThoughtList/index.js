@@ -1,12 +1,13 @@
 import React from "react";
-
 import { Link } from "react-router-dom";
 
 const ThoughtList = ({ thoughts, title }) => {
+  // Fetched data from QUERY_THOUGHTS
   if (!thoughts.length) {
     return <h3>No Thoughts Yet</h3>;
   }
 
+  // Loop through array and create a list of all thoughts
   return (
     <div>
       <h3>{title}</h3>

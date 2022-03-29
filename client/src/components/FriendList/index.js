@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const FriendList = ({ friendCount, username, friends }) => {
+  // These values are passed in from Home.js
   if (!friends || !friends.length) {
     return (
       <p className="bg-dark text-light p-3">{username}, make some friends!</p>

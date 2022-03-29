@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+// passed down from SingleThought.js
 const ReactionList = ({ reactions }) => {
   return (
     <div className="card mb-3">
@@ -11,7 +12,7 @@ const ReactionList = ({ reactions }) => {
         {reactions &&
           reactions.map((reaction) => (
             <p className="pill mb-3" key={reaction._id}>
-              {reaction.reactionBody} {"// "}
+              {reaction.reactionBody}{" "}
               <Link
                 to={`/profile/${reaction.username}`}
                 style={{ fontWeight: 700 }}

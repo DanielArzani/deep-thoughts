@@ -1,5 +1,5 @@
 {
-  "name": "deep-thoughts",
+  "name": "mern-social-media",
   "version": "1.0.0",
   "description": "",
   "main": "server/server.js",
@@ -10,18 +10,10 @@
     "seed": "cd server && npm run seed",
     "build": "cd client && npm run build"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/DanielArzani/deep-thoughts.git"
-  },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/DanielArzani/deep-thoughts/issues"
-  },
-  "homepage": "https://github.com/DanielArzani/deep-thoughts#readme",
   "devDependencies": {
-    "concurrently": "^7.0.0"
+    "concurrently": "^5.1.0"
   }
 }

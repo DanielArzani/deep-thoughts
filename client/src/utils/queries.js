@@ -1,5 +1,7 @@
 import { gql } from "@apollo/client";
 
+// The queries as we would write in graphiQl, we are turning them into expressions to be used
+
 export const QUERY_THOUGHTS = gql`
   query thoughts($username: String) {
     thoughts(username: $username) {

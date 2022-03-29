@@ -1,16 +1,17 @@
 import React, { useState } from "react";
 import { useMutation } from "@apollo/client";
-
 import { ADD_USER } from "../utils/mutations";
+
 import Auth from "../utils/auth";
 
 const Signup = () => {
+  // Form state
   const [formState, setFormState] = useState({
     username: "",
     email: "",
     password: "",
   });
-
+  // addUser mutationFunction
   const [addUser, { error }] = useMutation(ADD_USER);
 
   // update state based on form input changes
@@ -24,15 +25,15 @@ const Signup = () => {
   };
 
   // submit form
-  // when you sign up successfully, you'll be redirected to the homepage with your token stored in localStorage
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-
+    // When form is submitted, call addUser mutationFunction
     try {
       const { data } = await addUser({
         variables: { ...formState },
       });
 
+      // Send token to local storage
       Auth.login(data.addUser.token);
     } catch (e) {
       console.error(e);
@@ -77,7 +78,8 @@ const Signup = () => {
                 Submit
               </button>
             </form>
-            {error && <div>Sign up failed</div>}
+
+            {error && <div>Signup failed</div>}
           </div>
         </div>
       </div>
